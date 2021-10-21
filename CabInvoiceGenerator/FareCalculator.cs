@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CabInvoiceGenerator
 {
-    class FareCalculator
+    public class FareCalculator
     {
         const int MINIMUM_FARE = 5, COST_PER_KM = 10, Cost_PER_MINUTE = 1;
         public double CalculateFare(double distanceTravelledInKm, double timeOfTravelInMinutes)
