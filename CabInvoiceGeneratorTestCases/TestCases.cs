@@ -1,5 +1,6 @@
 using CabInvoiceGenerator;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace CabInvoiceGeneratorTestCases
 {
@@ -28,5 +29,21 @@ namespace CabInvoiceGeneratorTestCases
             double resultFare = fareCalculator.CalculateFare(0.3, 1);
             Assert.AreEqual(expectedFare, resultFare);
         }
+
+        [Test]
+        public void GivenListOfRides_WhenCalculateFareForMultipleRides_ShouldReturnAggregateFare()
+        {
+            List<Ride> ridesList = new List<Ride>();
+            ridesList.Add(new Ride(4, 2));
+            ridesList.Add(new Ride(6, 4));
+            ridesList.Add(new Ride(8, 6));
+            ridesList.Add(new Ride(3, 2));
+            ridesList.Add(new Ride(7, 10));
+            double expectedFare = 304;
+            double resultFare = fareCalculator.CalculateFareForMultipleRides(ridesList);
+            Assert.AreEqual(expectedFare, resultFare);
+        }
+
+
     }
 }
