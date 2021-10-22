@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CabInvoiceGenerator
 {
-    public class FareCalculator
+    public class InvoiceGenerator
     {
         const int MINIMUM_FARE = 5, COST_PER_KM = 10, Cost_PER_MINUTE = 1;
         double distanceTravelledInKm, timeOfTravelInMinutes, fare, totalFare = 0;
@@ -13,14 +13,14 @@ namespace CabInvoiceGenerator
             double fare = (distanceTravelledInKm * COST_PER_KM) + (timeOfTravelInMinutes * Cost_PER_MINUTE);
             return Math.Max(fare, MINIMUM_FARE);
         }
-        public double CalculateFareForMultipleRides(List<Ride> ridesList)
+        public InvoiceSummary CalculateFareForMultipleRides(List<Ride> ridesList)
         {
             foreach(Ride ride in ridesList)
             {
                 totalFare += this.CalculateFare(ride.distanceTravelledInKm, ride.timeOfTravelInMinutes);
             }
-            Console.WriteLine($"Total fare of all rides is: {totalFare}");
-            return totalFare;
+            // Console.WriteLine($"Total fare of all rides is: {totalFare}");
+            return new InvoiceSummary(ridesList.Count, totalFare);
             //bool isAnotherRide = true;
             //while (isAnotherRide)
             //{
